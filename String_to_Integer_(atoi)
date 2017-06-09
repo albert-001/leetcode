@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+		if(str.length()==0){return 0;}
+		int neg=1;
+		int d=0;
+		long long result=0;
+		string::iterator it = str.begin();
+		while(isspace(*it)){it++;}
+		if(*it=='-' || *it=='+'){
+			if(*it=='-'){neg=-1;}
+			it++;
+		}
+		for(; it != str.end(); it++){
+			if(isdigit(*it)){
+				d=*it-'0';
+			}else{
+				break;
+			}
+			result = result*10 + d;
+			if(neg*result>INT_MAX){result=INT_MAX; break;}
+			if(neg*result<INT_MIN){result=INT_MIN; break;}
+		}
+		return int(result*neg);
+    }
+};
