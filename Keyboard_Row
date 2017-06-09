@@ -1,0 +1,23 @@
+class Solution(object):
+    def __init__(self):
+        self.lines = {}
+        l1 = ['Q','W','E','R','T','Y','U','I','O','P']
+        l2 = ['A','S','D','F','G','H','J','K','L']
+        l3 = ['Z','X','C','V','B','N','M']
+        ls = [l1, l2, l3]
+        for i, l in enumerate(ls): 
+            for c in l:
+                self.lines[c] = i
+    
+    def findWords(self, words):
+        r = []
+        for word in words:
+            gotit = True
+            i = self.lines[word[0].upper()]
+            for w in word:
+                if not i==self.lines[w.upper()]:
+                    gotit = False
+                    break
+            if gotit:
+                r.append(word)
+        return r
