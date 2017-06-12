@@ -1,0 +1,17 @@
+class Solution(object):
+    def frequencySort(self, s):
+        from collections import Counter
+        c = Counter(s)
+        dic = {}
+        for key in c.keys():
+            if not c[key] in dic.keys():
+                dic[c[key]] = [key]
+            else:
+                dic[c[key]].append(key)
+        r = ''
+        ns = sorted(dic.keys(), reverse=True)
+        for n in ns:
+            c_l = dic[n]
+            for c in c_l:
+                r += c*n
+        return r
