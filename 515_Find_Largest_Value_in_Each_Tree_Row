@@ -1,0 +1,21 @@
+class Solution(object):
+    def largestValues(self, root):
+        if root is None: return []
+        l = []
+        r = []
+        l.append((root, 1))
+        c_level = 1
+        c_max = root.val
+        while len(l):
+            node, level = l.pop(0)
+            if c_level == level:
+                if node.val > c_max:
+                    c_max = node.val
+            else:
+                r.append(c_max)
+                c_max = node.val
+                c_level = level
+            if node.left: l.append((node.left, level+1))
+            if node.right: l.append((node.right, level+1))
+        r.append(c_max)
+        return r
