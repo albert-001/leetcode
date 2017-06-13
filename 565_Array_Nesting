@@ -1,0 +1,20 @@
+class Solution(object):
+    def arrayNesting(self, nums):
+        max_l = 0
+        used = {}
+        for num in nums:
+            used[num] = 0
+        for num in nums:
+            if used[num]: continue
+            c_num = num
+            l = 0
+            while True:
+                if not used[c_num]:
+                    l += 1
+                    used[c_num] = 1
+                    c_num = nums[c_num]
+                else:
+                    if l > max_l:
+                        max_l = l
+                    break
+        return max_l
