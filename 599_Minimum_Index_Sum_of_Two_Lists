@@ -1,0 +1,22 @@
+class Solution(object):
+    def findRestaurant(self, list1, list2):
+        w_2_c = {}
+        dic1 = {}
+        dic2 = {}
+        rs = (list1 + list2)
+        i_sum = len(list1) + len(list2)
+        for r in rs:
+            if r in w_2_c.keys():
+                w_2_c[r] += 1
+            else:
+                w_2_c[r] = 1
+        for i,r in enumerate(list1):
+            dic1[r] = i
+        for i,r in enumerate(list2):
+            dic2[r] = i
+        rs = [r for r in w_2_c.keys() if w_2_c[r]>1]
+        for r in rs:
+            if i_sum > (dic1[r] + dic2[r]):
+                i_sum = dic1[r] + dic2[r]
+        ret = [r for r in rs if i_sum == (dic1[r] + dic2[r])]
+        return ret
