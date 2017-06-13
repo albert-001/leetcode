@@ -32,3 +32,22 @@ class Solution(object):
                 l += 1
         l += len([f for f in fc if len(f)>0])
         return l
+        
+        
+ class Solution(object):
+    def findCircleNum(self, M):
+        N = len(M)
+        l = []
+        visited = [0]*N
+        count = 0
+        for i in xrange(N):
+            if visited[i]: continue
+            l = [i]
+            while len(l):
+                j = l.pop(0)
+                visited[j] = 1
+                for k,f in enumerate(M[j]):
+                    if f==1 and k!=j and visited[k]==0:
+                        l.append(k)
+            count+=1
+        return count
