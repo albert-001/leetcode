@@ -1,0 +1,16 @@
+class Solution(object):
+    def treeSum(self, root):
+        if root is None: return 0
+        return root.val + self.treeSum(root.left) + self.treeSum(root.right)
+        
+    def findTilt(self, root):
+        if root is None: return 0
+        l = [root]
+        s = 0
+        while(len(l)):
+            x = l.pop(0)
+            if x.left: l.append(x.left)
+            if x.right: l.append(x.right)
+            tilt = abs(self.treeSum(x.left)-self.treeSum(x.right))
+            s+=tilt
+        return s
