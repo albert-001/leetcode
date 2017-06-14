@@ -1,0 +1,8 @@
+class Solution(object):
+    def twoSum(self, numbers, target):
+        dic = {}
+        for i,n in enumerate(numbers):
+            if (target-n) in dic.keys():
+                return [dic[target-n], i+1]
+            else:
+                dic[n] = i+1
