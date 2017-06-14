@@ -1,0 +1,16 @@
+class Solution(object):
+    def __init__(self, head):
+        self.l = 0
+        self.h = head
+        while self.h.next:
+            self.h = self.h.next
+            self.l += 1
+        self.h.next = head
+        self.l += 1
+
+    def getRandom(self):
+        import random
+        N = random.randint(0, self.l-1)
+        for i in xrange(N):
+            self.h = self.h.next
+        return self.h.val
