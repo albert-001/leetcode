@@ -1,0 +1,11 @@
+class Solution(object):
+    def __init__(self, nums):
+        self.l = len(nums)
+        self.nums = nums
+
+    def pick(self, target):
+        import random
+        while True:
+            N = random.randint(0, self.l-1)
+            if self.nums[N]==target:
+                return N
