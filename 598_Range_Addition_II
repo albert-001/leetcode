@@ -1,0 +1,6 @@
+class Solution(object):
+    def maxCount(self, m, n, ops):
+        if len(ops)==0: return m*n
+        ms = [a for [a,b] in ops]
+        ns = [b for [a,b] in ops]
+        return min(ms)*min(ns)
