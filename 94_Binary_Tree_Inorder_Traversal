@@ -1,0 +1,19 @@
+class Solution(object):
+    def inorderTraversal(self, root):
+        if root is None: return []
+        visited = {}
+        ns = [root]
+        i = 0
+        while i<len(ns):
+            n = ns[i]
+            if not n in visited.keys():
+                j = i
+                if n.left:
+                    ns.insert(i, n.left)
+                    j += 1
+                if n.right:
+                    ns.insert(j+1, n.right)
+                visited[n] = 1
+            else:
+                i += 1
+        return [n.val for n in ns]
