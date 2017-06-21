@@ -1,0 +1,13 @@
+class Solution(object):
+    def findDiagonalOrder(self, matrix):
+        M = len(matrix)
+        if M==0: return []
+        N = len(matrix[0])
+        r = []
+        for k in xrange(M+N+1):
+            upper = min(M, k+1)
+            lower = max(0, k-N+1)
+            s = [matrix[i][k-i] for i in xrange(lower, upper)]
+            if k % 2 == 0: s = reversed(s)
+            r.extend(s)
+        return r
