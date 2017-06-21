@@ -1,0 +1,11 @@
+class Solution(object):
+    def findMinDifference(self, timePoints):
+        lst = sorted([int(tp.split(":")[0])*60 + int(tp.split(":")[1]) for tp in timePoints])
+        min_diff = 1440
+        for i in xrange(len(lst)-1):
+            if lst[i+1]-lst[i] < min_diff:
+                min_diff = lst[i+1]-lst[i]
+                if min_diff>720: min_diff=1440-min_diff
+        min_s = lst[-1]-lst[0]
+        if min_s>720: min_s=1440-min_s
+        return min(min_diff, min_s)
