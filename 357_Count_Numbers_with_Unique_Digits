@@ -1,0 +1,14 @@
+class Solution(object):
+    def countNumbersWithUniqueDigits(self, n):
+        def p(m):
+            c = 81
+            while m>2:
+                c*=(11-m)
+                m-=1
+            return c
+        r = 10
+        if n==0: return 1
+        if n==1: return 10
+        for i in xrange(2, min(10, n)+1):
+            r += p(i)
+        return r
