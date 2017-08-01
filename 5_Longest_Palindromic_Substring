@@ -1,0 +1,17 @@
+class Solution(object):
+    def xpand(self, s, l, r):
+        while(l>=0 and r<len(s) and s[l]==s[r]):
+            l-=1
+            r+=1
+        return (l+1,r-1)            
+        
+    def longestPalindrome(self, s):
+        r = ''
+        for i in range(len(s)):
+            l1,r1 = self.xpand(s,i,i)
+            l2,r2 = self.xpand(s,i,i+1)
+            if(r1-l1+1)>len(r):
+                r = s[l1:r1+1]
+            if(r2-l2+1)>len(r):
+                r = s[l2:r2+1]
+        return r
