@@ -1,0 +1,11 @@
+class Solution(object):
+    def findBottomLeftValue(self, root):
+        l = [root]
+        while True:
+            c = []
+            c.extend([n.left for n in l if n.left is not None])
+            c.extend([n.right for n in l if n.right is not None])
+            if len(c):
+                l = c
+            else:
+                return l[0].val
