@@ -1,0 +1,8 @@
+    def totalHammingDistance(self, nums):
+        r = 0
+        n = len(nums)
+        for i in xrange(32):
+            ones = len([num for num in nums if num&(1<<i)])
+            zeros = n - ones
+            r += ones*zeros
+        return r
