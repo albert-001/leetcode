@@ -1,0 +1,6 @@
+    def findPoisonedDuration(self, timeSeries, duration):
+        periods = [(start, start+duration) for start in timeSeries]
+        overlap = 0
+        for i in xrange(len(periods)-1):
+            if periods[i][1]>periods[i+1][0]: overlap += (periods[i][1]-periods[i+1][0])
+        return len(timeSeries)*duration-overlap
