@@ -1,0 +1,24 @@
+class Solution(object):
+    def traverseTree(self, root):
+        if root is None:
+            return
+        self.traverseTree(root.left)
+        self.traverseTree(root.right)
+        if root.left: root.val += root.left.val
+        if root.right: root.val += root.right.val
+
+    def findFrequentTreeSum(self, root):
+        if root is None: return []
+        dic = {}
+        self.traverseTree(root)
+        l = [root]
+        while len(l):
+            for n in l:
+                if not n.val in dic:
+                    dic[n.val]=1
+                else:
+                    dic[n.val]+=1
+            l = [n.left for n in l if n.left] + [n.right for n in l if n.right]
+        freq_sum_freq = max(dic.values())
+        freq_sum = [key for key in dic.keys() if dic[key]==freq_sum_freq]
+        return freq_sum
