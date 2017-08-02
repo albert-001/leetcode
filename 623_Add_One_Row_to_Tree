@@ -1,0 +1,20 @@
+class Solution(object):
+    def addOneRow(self, root, v, d):
+        if d==1:
+            tmp = TreeNode(v)
+            tmp.left = root
+            return tmp
+        l = [root]
+        for i in xrange(2, d):
+            c = []
+            c.extend([n.left for n in l if n.left])
+            c.extend([n.right for n in l if n.right])
+            l = c
+        for n in l:
+            tmp = TreeNode(v)
+            tmp.left = n.left
+            n.left = tmp
+            tmp = TreeNode(v)
+            tmp.right = n.right
+            n.right = tmp
+        return root
