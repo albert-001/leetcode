@@ -1,0 +1,5 @@
+    def singleNumber(self, nums):
+        diff = reduce(lambda x,y:x^y, nums)
+        diff &= -diff
+        l1, l2 = [n for n in nums if n&diff], [n for n in nums if not n&diff]
+        return [reduce(lambda x,y:x^y, l1), reduce(lambda x,y:x^y, l2)]
