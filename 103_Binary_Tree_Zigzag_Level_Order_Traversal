@@ -1,0 +1,20 @@
+class Solution(object):
+    def zigzagLevelOrder(self, root):
+        if root is None: return []
+        r = []
+        l = [root]
+        odd = True
+        while len(l):
+            tmp = l
+            if odd is False:
+                tmp = list(reversed(l))
+                odd = True
+            else:
+                odd = False
+            r.append([n.val for n in tmp])
+            c = []
+            for n in l:
+                if n.left: c.append(n.left)
+                if n.right: c.append(n.right)
+            l = c
+        return r
