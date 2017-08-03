@@ -1,0 +1,14 @@
+class Solution(object):
+
+    def __init__(self, nums):
+        import copy
+        self.nums = nums
+        self.origin = copy.deepcopy(nums)
+
+    def reset(self):
+        return self.origin
+
+    def shuffle(self):
+        import random
+        random.shuffle(self.nums)
+        return self.nums
