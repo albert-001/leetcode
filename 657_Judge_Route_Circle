@@ -1,0 +1,11 @@
+class Solution(object):
+    def judgeCircle(self, moves):
+        x, y = 0, 0
+        ox, oy = x, y
+        lr, ud = {"R":1, "L":-1}, {"U":1, "D":-1}
+        for m in moves:
+            if m in lr:
+                x += lr[m]
+            else:
+                y += ud[m]
+        return (ox==x and oy==y)
