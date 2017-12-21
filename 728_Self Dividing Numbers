@@ -1,0 +1,13 @@
+class Solution(object):
+    def isSelfDividingNumbers(self, n):
+        x = n
+        while x>0:
+            m = x%10
+            if m==0 or (not n%m==0):
+                return 0
+            x = x/10
+        return 1
+        
+    def selfDividingNumbers(self, left, right):
+        r = [i for i in range(left, right+1) if self.isSelfDividingNumbers(i)==1]
+        return r
