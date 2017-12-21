@@ -1,0 +1,13 @@
+class Solution(object):
+    def constructMaximumBinaryTree(self, nums):
+        if len(nums)==0: return None
+        m = max(nums)
+        i = 0
+        for n in nums:
+            if n==m:
+                break
+            i+=1
+        root = TreeNode(m)
+        if not i==0: root.left = self.constructMaximumBinaryTree(nums[:i])
+        if not i==n-1: root.right = self.constructMaximumBinaryTree(nums[i+1:])
+        return root
