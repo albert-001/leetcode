@@ -1,0 +1,29 @@
+class Solution(object):
+    def calPoints(self, ops):
+        l=[]
+        sum = 0
+        for op in ops:
+            if op=="+":
+                le = len(l)
+                if le==1:
+                    sum+=l[-1]
+                    l.append(l[-1])
+                elif le>1:
+                    sum+=(l[-1]+l[-2])
+                    l.append(l[-1]+l[-2])
+            elif op=="D":
+                le = len(l)
+                if not le==0:
+                    c=l[-1]*2
+                    l.append(c)
+                    sum+=(c)
+            elif op=="C":
+                le = len(l)
+                if not le==0:
+                    sum-=l[-1]
+                    del l[-1]
+            else:
+                c=int(op)
+                l.append(c)
+                sum+=c
+        return sum
