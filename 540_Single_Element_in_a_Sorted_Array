@@ -1,0 +1,21 @@
+class Solution(object):
+    def singleNonDuplicate(self, nums):
+        l = len(nums)
+        if l==1:
+            return nums[0]
+        mid = l/2
+        nums_m = nums[mid]
+        nums_l = nums[mid-1]
+        nums_r = nums[mid+1]
+        if nums_m == nums_l:
+            if mid%2:
+                return self.singleNonDuplicate(nums[(mid+1):])
+            else:
+                return self.singleNonDuplicate(nums[:mid])
+        elif nums_m == nums_r:
+            if mid%2:
+                return self.singleNonDuplicate(nums[:mid])
+            else:
+                return self.singleNonDuplicate(nums[(mid+2):])
+        else:
+            return nums_m
