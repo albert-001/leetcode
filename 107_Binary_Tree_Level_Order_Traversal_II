@@ -1,0 +1,17 @@
+class Solution(object):
+    def levelOrderBottom(self, root):
+        if root is None: return []
+        r = [[root.val]]
+        q = [root]
+        while True:
+            l = []
+            for x in q:
+                if x.left is not None:
+                    l.append(x.left)
+                if x.right is not None:
+                    l.append(x.right)
+            if len(l)==0: break
+            r.append([x.val for x in l])
+            q = l
+        r.reverse()
+        return r
