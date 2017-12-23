@@ -1,0 +1,10 @@
+class Solution(object):
+    def averageOfLevels(self, root):
+        r = [float(root.val)]
+        q = [root]
+        while True:
+            lst = [x.left for x in q if x.left is not None] + [x.right for x in q if x.right is not None]
+            if len(lst)==0: break
+            r.append(sum([x.val for x in lst])/float(len(lst)))
+            q = lst
+        return r
