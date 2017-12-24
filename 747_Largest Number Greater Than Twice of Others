@@ -1,0 +1,10 @@
+class Solution(object):
+    def dominantIndex(self, nums):
+        m = max(nums)
+        index = -1
+        for i, n in enumerate(nums):
+            if (not m==n) and (m<2*n):
+                return -1
+            if n==m:
+                index = i
+        return index
