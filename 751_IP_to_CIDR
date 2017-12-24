@@ -1,0 +1,31 @@
+class Solution(object):
+    def ipToCIDR(self, ip, range):
+        import math
+        r = []
+        ips = ip.split(".")
+        ips = [int(p) for p in ips]
+        nip = (ips[0]<<24)+(ips[1]<<16)+(ips[2]<<8)+ips[3]
+        while 1:
+            i = 32
+            x = nip
+            while 1:
+                if x&1==0:
+                    x=(x>>1)
+                    i-=1
+                else:
+                    break
+            n = 2**(32-i)
+            if range >= n:
+                s = "%d.%d.%d.%d/%d" % (nip>>24, (nip>>16)&255, (nip>>8)&255, nip&255, i)
+                r.append(s)
+                range -= n
+                nip += n
+            elif range == 0:
+                break
+            else:
+                v = int(math.log(range,2))
+                s = "%d.%d.%d.%d/%d" % (nip>>24, (nip>>16)&255, (nip>>8)&255, nip&255, 32-v)
+                range -= 2**v
+                nip += 2**v
+                r.append(s)
+        return r
