@@ -1,0 +1,19 @@
+class Solution(object):
+    def hasCommonLetter(self, a, b):
+        for l in a:
+            if l in b:
+                return True
+        return False
+
+    def maxProduct(self, words):
+        m = 0
+        n = len(words)
+        dic1 = [0]*n
+        for i in xrange(n):
+            dic1[i] = len(words[i])
+        for i in xrange(n-1):
+            for j in xrange(i+1, n):
+                p = dic1[i]*dic1[j]
+                if (p>m) and (not self.hasCommonLetter(words[i],words[j])):
+                    m=p
+        return m
