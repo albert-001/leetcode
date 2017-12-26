@@ -1,0 +1,14 @@
+class Solution(object):
+    def reconstructQueue(self, people):
+##################################################
+#The idea here is to arrange tallest people first
+#When they are set, then arrange second tallest
+#people, and so on. Because when taller people is
+#set, position of the smaller people will not
+#affect the position of higher people.
+##################################################
+        people.sort(key=lambda (h, k): (-h, k))
+        r = []
+        for p in people:
+            r.insert(p[1], p)
+        return r
